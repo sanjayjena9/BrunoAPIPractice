@@ -1,0 +1,37 @@
+meta {
+  name: Get all tools
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{BaseURL}}/tools
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~results: 1
+  ~category: trailers
+  ~available: 
+}
+
+assert {
+  res.status: eq 200
+  res.body[0].category: eq trailers
+}
+
+script:post-response {
+  console.log(res.body);
+  
+  let toolIDAutomation = res.body[0].id;
+  console.log(toolIDAutomation);
+  
+  //set a variable
+  bru.setVar("toolID", toolIDAutomation);
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

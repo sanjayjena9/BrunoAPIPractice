@@ -1,0 +1,20 @@
+meta {
+  name: Get a single tool
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{BaseURL}}//tools/:toolId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  toolId: {{toolID}}
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

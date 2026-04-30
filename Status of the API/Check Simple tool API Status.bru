@@ -1,0 +1,20 @@
+meta {
+  name: Check Simple tool API Status
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{BaseURL}}/status
+  body: none
+  auth: inherit
+}
+
+script:pre-request {
+  console.log("I executed first before request call processed!!!")
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
