@@ -10,6 +10,11 @@ get {
   auth: inherit
 }
 
+assert {
+  res.status: eq 200
+  res.body.status: eq "UP"
+}
+
 script:pre-request {
   console.log("I executed first before request call processed!!!")
 }
