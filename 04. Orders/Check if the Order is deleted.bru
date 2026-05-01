@@ -1,0 +1,28 @@
+meta {
+  name: Check if the Order is deleted
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{BaseURL}}/orders/:orderId
+  body: none
+  auth: bearer
+}
+
+params:path {
+  orderId: {{orderIDAutomation}}
+}
+
+auth:bearer {
+  token: {{apiTokenAutomation}}
+}
+
+assert {
+  res.status: eq 404
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

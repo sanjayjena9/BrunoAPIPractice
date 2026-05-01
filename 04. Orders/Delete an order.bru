@@ -1,0 +1,28 @@
+meta {
+  name: Delete an order
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{BaseURL}}/orders/:orderId
+  body: none
+  auth: bearer
+}
+
+params:path {
+  orderId: {{orderIDAutomation}}
+}
+
+auth:bearer {
+  token: {{apiTokenAutomation}}
+}
+
+assert {
+  res.status: eq 204
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

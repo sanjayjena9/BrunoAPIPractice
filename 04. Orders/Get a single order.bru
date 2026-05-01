@@ -1,0 +1,24 @@
+meta {
+  name: Get a single order
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{BaseURL}}/orders/:orderId
+  body: none
+  auth: bearer
+}
+
+params:path {
+  orderId: {{orderIDAutomation}}
+}
+
+auth:bearer {
+  token: {{apiTokenAutomation}}
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

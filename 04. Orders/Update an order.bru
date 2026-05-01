@@ -1,0 +1,35 @@
+meta {
+  name: Update an order
+  type: http
+  seq: 4
+}
+
+patch {
+  url: {{BaseURL}}/orders/:orderId
+  body: json
+  auth: bearer
+}
+
+params:path {
+  orderId: {{orderIDAutomation}}
+}
+
+auth:bearer {
+  token: {{apiTokenAutomation}}
+}
+
+body:json {
+  {
+   "customerName": "{{$randomFirstName}}",
+   "comment":"An Order is updated."
+  }
+}
+
+assert {
+  res.status: eq 204
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

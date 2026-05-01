@@ -1,0 +1,39 @@
+meta {
+  name: Create a new Order
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{BaseURL}}/orders
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{apiTokenAutomation}}
+}
+
+body:json {
+  {
+   "toolId": {{toolID}},
+   "customerName": "{{$randomFirstName}}",
+   "comment":"Created a new Order."
+  }
+}
+
+script:post-response {
+  //Store the Order ID in a Variable
+  console.log(res.body);
+  
+  let orderIDAutomation = res.body.orderId;
+  console.log(orderIDAutomation);
+  
+  //set a variable
+  bru.setVar("orderIDAutomation", orderIDAutomation);
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
